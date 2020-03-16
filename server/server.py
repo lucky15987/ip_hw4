@@ -23,4 +23,7 @@ while True:
         server_socket.sendto("I got your message".encode(), addr)
         print('Message Sent')
 
+    data2, addr = server_socket.recvfrom(1024)
+    print('Message 2: ', data2.decode())
+
     server_socket.close()
