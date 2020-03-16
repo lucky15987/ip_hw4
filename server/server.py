@@ -22,4 +22,5 @@ while True:
     if data:
         server_socket.sendto("Message Recieved!".encode(), ('localhost', 1234))
         print('Message Sent')
+
     server_socket.close()
