@@ -8,8 +8,12 @@ port = 1234
 
 msg = "Test Succesful"
 
-client_socket.sendto(msg.encode(), ('localhost', 5432))
+try:
+    client_socket.sendto(msg.encode(), ('localhost', 5432))
 
+    data2 = client_socket.recvfrom(1024)
+    print('Message Recieved: ', data2.decode())
 
-
-client_socket.close
+finally:
+    print("Closing Client")
+    client_socket.close()
