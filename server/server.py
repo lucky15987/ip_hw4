@@ -20,7 +20,7 @@ while True:
     print('Message: ', data.decode())
 
     if data:
-        server_socket.sendto("Message Recieved!".encode(), ('localhost', 1234))
+        server_socket.sendto("I got your message".encode(), addr)
         print('Message Sent')
 
     server_socket.close()
