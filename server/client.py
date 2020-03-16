@@ -6,10 +6,8 @@ print('Client: Socket Created')
 host = 'localhost'
 port = 1234
 
+client_socket.sendto("Test", ('localhost', 5432))
 
-try:
-    print()
 
-finally:
-    print('Client: Closing Socket')
-    client_socket.close
+
+client_socket.close
