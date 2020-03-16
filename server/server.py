@@ -12,8 +12,14 @@ print('Server: Socket conneted to ' + host)
 
 #server_socket.listen(3)  #generate a listener for 3 connections (clients) TCP networking only
 print('Waiting for connections')
+#recieved = "Messaged Recieved!"
 
 while True:   
     data, addr = server_socket.recvfrom(2040)
-    print('Connected with ', addr)
+    print('Connected with', addr)
+    print('Message: ', data.decode())
+
+    if data:
+        server_socket.sendto("Message Recieved!".encode(), ('localhost', 1234))
+        print('Message Sent')
     server_socket.close()

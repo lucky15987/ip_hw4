@@ -6,7 +6,9 @@ print('Client: Socket Created')
 host = 'localhost'
 port = 1234
 
-client_socket.sendto("Test", ('localhost', 5432))
+msg = "Test Succesful"
+
+client_socket.sendto(msg.encode(), ('localhost', 5432))
 
 
 
