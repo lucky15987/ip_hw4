@@ -19,19 +19,22 @@ print('Server: Socket connected to ' + host)
 print('Waiting for connections')
 
 while True:
-    data, addr = server_socket.recvfrom(1024)
-    n = int(data.decode())
-    print('Connected with', addr)
-    print('The number (n) received was: ', n)
+    try:
+        data, addr = server_socket.recvfrom(1024)
+        n = int(data.decode())
+        print('Connected with', addr)
+        print('The number (n) received was: ', n)
+        print('')
 
-    if data:
-        server_socket.sendto("The Server received this number (n): ".encode() + data, addr)
+        if data:
+            server_socket.sendto("The Server received this number (n): ".encode() + data, addr)
 
-        server_socket.sendto("The factorial of: ".encode() + data + " is: ".encode() + factorial(n).encode(), addr)
-        #print(factorial(n))
-        print('Message Sent to Client')
+            server_socket.sendto("The factorial of ".encode() + data + " is: ".encode() + factorial(n).encode(), addr)
+            #print(factorial(n))
+            print('Message sent to Client\n')
 
-    data2, addr = server_socket.recvfrom(1024)
-    print('Message from Client: ', data2.decode())
-
-    server_socket.close()
+        data2, addr = server_socket.recvfrom(1024)
+        print('Message from Client: ', data2.decode())
+    finally:
+        print('Server still waiting for more connections')
+        #server_socket.close()
