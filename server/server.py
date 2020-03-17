@@ -1,29 +1,37 @@
 import socket
+import math
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #takes IP4 address and using UDP networking
+
+def factorial(n):
+    return str(math.factorial(n))
+
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # takes IP4 address and using UDP networking
 print('Server: Socket Created')
 
 host = 'localhost'
 port = 5432
 
-server_socket.bind((host, port))    #bind to address
+server_socket.bind((host, port))  # bind to address
 
-print('Server: Socket conneted to ' + host)
+print('Server: Socket connected to ' + host)
 
-#server_socket.listen(3)  #generate a listener for 3 connections (clients) TCP networking only
 print('Waiting for connections')
 
-
-while True:   
+while True:
     data, addr = server_socket.recvfrom(1024)
+    n = int(data.decode())
     print('Connected with', addr)
-    print('Message: ', data.decode())
+    print('The number (n) received was: ', n)
 
     if data:
-        server_socket.sendto("I got your message".encode(), addr)
-        print('Message Sent')
+        server_socket.sendto("The Server received this number (n): ".encode() + data, addr)
+
+        server_socket.sendto("The factorial of: ".encode() + data + " is: ".encode() + factorial(n).encode(), addr)
+        #print(factorial(n))
+        print('Message Sent to Client')
 
     data2, addr = server_socket.recvfrom(1024)
-    print('Message 2: ', data2.decode())
+    print('Message from Client: ', data2.decode())
 
     server_socket.close()
