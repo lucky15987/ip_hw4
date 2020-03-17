@@ -1,9 +1,5 @@
 import socket
 
-
-
-
-
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 print('Client: Socket Created')
 
@@ -11,6 +7,9 @@ host = 'localhost'
 port = 5432
 
 num = input('Enter a number between 0-10: ')
+while (int(num) > 10 or int(num) <0):
+    print('Input is not between 0-10, try again!\n')
+    num = input('Enter a number between 0-10: ')
 n = str.encode(num)
 
 msg = "Thanks!"
