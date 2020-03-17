@@ -5,7 +5,6 @@ import math
 def factorial(n):
     return str(math.factorial(n))
 
-
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # takes IP4 address and using UDP networking
 print('Server: Socket Created')
 
